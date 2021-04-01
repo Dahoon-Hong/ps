@@ -1,6 +1,7 @@
 
 N = int(input())
 
+
 for tc in range(N):
     a = input()
     b = input()
