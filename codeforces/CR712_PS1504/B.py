@@ -17,69 +17,29 @@ for tc in range(TC):
     sa = input()
     sb = input()
 
-    if sa == sb:
-        print("YES")
-        continue
+    # if sa == sb:
+    #     print("YES")
+    #     continue
 
-    a = [int(x) for x in sa]
-    b = [int(x) for x in sb]
+    a = [1 if x == '1' else -1 for x in sa]
+    b = [1 if x == '1' else -1 for x in sb]
 
-    if sum(a) != sum(b):
-        print("NO")
-        continue
-    
-    if N%2 == 1 and a[-1] != b[-1]:
-        print("NO")
-        continue
-    #print(sa)
-    i = 0
-    while i < N:
-        #print('---- {}'.format(i))
-        if i < N - 1:
-            if a[i] == b[i] and a[i+1] == b[i+1]:
-                if i + 1 == N - 1 :
-                    print("YES")
-                    break
-                i += 2
-                continue
+    # if sum(a) != sum(b):
+    #     print("NO")
+    #     continue
 
-        if i == N - 1:
-            if a[i] == b[i] :
-                print("YES")
-            else:
-                print("NO")
-            break
+    a.append(1)
+    b.append(1)
 
-        j = i
-        flag = 0
-        while j < N-1:
-            j += 2
-            #sb_left = i-1 if i-1 >= 0
-            #print(sa[i:j][::-1], sb[i:j], i, j)
-            if sum(a[0:j])*2 == j:
-                try:
-                    aa = memory[sa[i:j]]
-                except KeyError:
-                    memory[sa[i:j]] = dict()
-                
-                try:
-                    bb = memory[sa[i:j]][sb[i:j]]
-                except KeyError:
-                    memory[sa[i:j]][sb[i:j]] = check(j-i, sa[i:j], sb[i:j])
-                    bb = memory[sa[i:j]][sb[i:j]]
-
-                if bb is True:
-                    flag=1
-                    break
-        
-        i = j
-        #print(i)
-        if not flag:
+    t = 0
+    flag = 0
+    for i in range(0, N, 1):
+        t += (a[i])
+        # print(i, t, (a[i] == b[i]), (a[i+1] == b[i+1]))
+        if ((a[i] == b[i]) != (a[i+1] == b[i+1])) and t != 0:
             print("NO")
+            flag = 1
             break
-        
-        if i == N:
-            print("YES")
-            break
-    print(memory)
-    #print('?')
+    
+    if not flag:
+        print("YES")
