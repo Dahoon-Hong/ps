@@ -7,7 +7,7 @@ vector<int> valid_set;
 
 int mmap[10] = {0, 1, 5, -1, -1, 2, -1, -1, 8, -1};
 
-int solve()
+void solve()
 {
     int n;
         int H, M;
@@ -23,7 +23,17 @@ int solve()
 
         while(true)
         {
-            // printf("%d%d:%d%d\n", h1,h2,m1,m2);
+            
+            if(m2 >= 10)
+            {
+                m2 = 0;
+                m1++; 
+            }
+            if(h2 >= 10)
+            {
+                h2 = 0;
+                h1++;
+            }
             if(m1*10+m2 >= M)
             {
                 h2++;
@@ -44,6 +54,8 @@ int solve()
                 m2=0;
             }
 
+            // printf("%d%d:%d%d\n", h1,h2,m1,m2);
+
             if (find(valid_set.begin(), valid_set.end(), m2) == valid_set.end())
             {
                 m2++;
@@ -51,16 +63,22 @@ int solve()
             }
             if (find(valid_set.begin(), valid_set.end(), m1) == valid_set.end())
             {
+                m2 = 0;
                 m1++;
                 continue;
             }
             if (find(valid_set.begin(), valid_set.end(), h2) == valid_set.end())
             {
+                m1 = 0;
+                m2 = 0;
                 h2++;
                 continue;
             }
             if (find(valid_set.begin(), valid_set.end(), h1) == valid_set.end())
             {
+                m1=0;
+                m2=0;
+                h2=0;
                 h1++;
                 continue;
             }
