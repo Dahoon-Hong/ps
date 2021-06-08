@@ -2,7 +2,7 @@
  
 using namespace std;
 
-int solve()
+void solve()
 {
     int n;
     string s;
